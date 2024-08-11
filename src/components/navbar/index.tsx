@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 const Navbar = () => {
   return (
-    <div className="h-12 bg-background flex justify-between items-center px-16 py-10">
+    <div className="h-12 bg-background flex justify-between items-center px-8 lg:px-16 py-10">
       <h1 className="flex flex-col leading-3 gap-2 font-bold text-lg">
         <span>ecommerce</span>
         <span>academy</span>
@@ -17,7 +17,7 @@ const Navbar = () => {
       </div>
       <div className="flex items-center gap-2">
         <Button variant="secondary">Log in</Button>
-        <Button variant="default" className="flex gap-2 py-6">
+        <Button variant="default" className="flex items-center gap-2 py-6">
           <span>Sign up</span>
           <ArrowRight className="size-4" />
         </Button>

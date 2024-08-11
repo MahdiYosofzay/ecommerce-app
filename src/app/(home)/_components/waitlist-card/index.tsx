@@ -12,7 +12,7 @@ interface WaitlistCardProps {
 const WaitlistCard: React.FC<WaitlistCardProps> = ({ iconBgColor, Icon }) => {
   return (
     <Card>
-      <CardContent className="flex items-center h-[320px] p-8">
+      <CardContent className="flex items-center h-[20rem] p-8">
         <div className="flex flex-col justify-between h-full">
           <p className="font-medium">John Doe</p>
           <p className="font-bold text-4xl">Email Marketing</p>
