@@ -29,9 +29,9 @@ export default function Home() {
       <section className="w-full">
         <div
           style={{ backgroundImage: `url(${banner.src})` }}
-          className="relative w-full h-[90vh] rounded-3xl bg-cover bg-center overflow-hidden"
+          className="relative w-full h-[90vh] rounded-3xl bg-cover bg-left sm:bg-center overflow-hidden"
         >
-          <div className="flex flex-col gap-16 h-full py-24 md:py-16 px-8 lg:px-16">
+          <div className="flex flex-col gap-16 h-full py-48 xl:py-16 px-8 lg:px-16">
             <h1
               className="text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-extrabold
                          text-white leading-[1.3] w-[25rem] md:w-[35rem] xl:w-2/3 z-20"
@@ -109,17 +109,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full flex flex-col gap-12 items-center text-secondary py-20 px-8 xl:px-20 bg-[#99d2fd] rounded-3xl">
+      <section
+        className="w-full flex flex-col gap-12 items-center text-secondary
+                   py-20 px-4 md:px-8 xl:px-20 bg-[#99d2fd] rounded-3xl"
+      >
         <h1 className="text-4xl font-extrabold ">What our student say</h1>
         <CommentCarousel />
       </section>
 
-      <section className="relative overflow-hidden flex rounded-lg bg-card p-8 lg:p-16 w-full">
+      <section className="relative overflow-hidden flex flex-col md:flex-row rounded-lg bg-card p-8 lg:p-16 w-full">
         <div className="basis-1/2 flex flex-col gap-8">
           <p className="text-4xl font-bold sm:w-[80%]">
             Take a peek at what you'll get inside the course
           </p>
-          <Button className="gap-2 text-foreground w-fit p-6 rounded-lg">
+          <Button className="gap-2 text-foreground w-full md:w-fit p-6 rounded-lg mb-8">
             <span>Our instructors</span>
             <FaArrowRightLong />
           </Button>
@@ -163,20 +166,21 @@ export default function Home() {
           alt="bg image"
           width={720}
           height={720}
-          className="w-96 h-96 lg:w-[45rem] lg:h-[45rem] absolute -bottom-24 -left-32 lg:-bottom-80 lg:-left-[8rem]"
+          className="w-96 h-96 hidden md:block lg:w-[45rem] lg:h-[45rem] 
+                     absolute -bottom-24 -left-32 lg:-bottom-80 lg:-left-[8rem] z-10"
         />
       </section>
-      <section className="relative flex p-8 lg:p-16 w-full">
-        <div className="basis-1/3 flex flex-col gap-8">
-          <p className="text-4xl font-bold sm:w-[80%]">
+      <section className="relative flex flex-col lg:flex-row p-8 lg:p-16 w-full gap-16 lg:gap-0">
+        <div className="lg:basis-1/3 flex flex-col gap-8">
+          <p className="text-4xl font-bold lg:w-[80%] text-center">
             Who is the courses for
           </p>
-          <p className="text-sm text-paragraph pr-8">
+          <p className="text-base font-semibold lg:text-sm text-paragraph lg:pr-8 text-center">
             Get behavior-based, data-driven automation features proven to help
             turn email marketing into your #1 growth engine.
           </p>
         </div>
-        <div className="basis-2/3 grid grid-cols-2 gap-y-16">
+        <div className="lg:basis-2/3 grid grid-cols-2 gap-y-16">
           <QuoteCard
             title="eCom Marketing Professionals"
             text="Expand your general knowledge or get insight on the newest, cutting
@@ -213,7 +217,7 @@ export default function Home() {
         </div>
       </section>
       <section className="flex justify-center items-center rounded-lg bg-primary w-full">
-        <div className="relative flex flex-col justify-center items-center gap-8 py-24 px-36 xl:w-2/3 xl:px-12">
+        <div className="relative flex flex-col justify-center items-center gap-8 py-12 md:py-24 px-12 md:px-36 xl:w-2/3 xl:px-12">
           <h1 className="text-3xl lg:text-5xl font-extrabold text-secondary text-center">
             Become a certified eCommerce email marketer
           </h1>

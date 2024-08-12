@@ -1,28 +1,62 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [openMenu, setOpenMenu] = useState<boolean>(false);
+
   return (
-    <div className="h-12 bg-background flex justify-between items-center px-8 lg:px-16 py-10">
-      <h1 className="flex flex-col leading-3 gap-2 font-bold text-lg">
-        <span>ecommerce</span>
-        <span>academy</span>
-        <span></span>
-      </h1>
-      <div className="flex gap-8">
-        <Link href="/">Courses</Link>
-        <Link href="/">Instructors</Link>
-        <Link href="/">About</Link>
+    <nav className="w-full bg-background mb-2 sticky top-0 left-0 z-30">
+      <div className="relative flex flex-row-reverse md:flex-row justify-between items-center px-8 lg:px-16 py-4">
+        <h1 className="flex flex-col leading-3 gap-2 font-bold text-lg">
+          <span>ecommerce</span>
+          <span>academy</span>
+          <span></span>
+        </h1>
+        <div className="hidden md:flex gap-8">
+          <Link href="/">Courses</Link>
+          <Link href="/">Instructors</Link>
+          <Link href="/">About</Link>
+        </div>
+        <div className="hidden md:flex items-center gap-2">
+          <Button variant="secondary">Log in</Button>
+          <Button variant="default" className="flex items-center gap-2 py-6">
+            <span>Sign up</span>
+            <ArrowRight className="size-4" />
+          </Button>
+        </div>
+        <RxHamburgerMenu
+          className="md:hidden"
+          size={28}
+          onClick={() => setOpenMenu(!openMenu)}
+        />
+        {openMenu && (
+          <div className="md:hidden absolute top-16 left-0 bg-secondary w-full h-fit z-30">
+            <ul className="flex flex-col gap-4 px-12 py-8">
+              <li>
+                <Link href="/">Courses</Link>
+              </li>
+              <li>
+                <Link href="/">Instructors</Link>
+              </li>
+              <li>
+                <Link href="/">About</Link>
+              </li>
+              <li>
+                <Link href="/">Sign up</Link>
+              </li>
+              <li>
+                <Link href="/">Log in</Link>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
-      <div className="flex items-center gap-2">
-        <Button variant="secondary">Log in</Button>
-        <Button variant="default" className="flex items-center gap-2 py-6">
-          <span>Sign up</span>
-          <ArrowRight className="size-4" />
-        </Button>
-      </div>
-    </div>
+    </nav>
   );
 };
 

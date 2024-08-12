@@ -9,9 +9,12 @@ import {
 
 const Footer = () => {
   return (
-    <div className="flex p-8 w-full h-[22rem]">
-      <div className="basis-[40%] flex flex-col justify-between pl-24 h-full">
-        <div className="flex flex-col gap-6">
+    <footer className="flex flex-col md:flex-row p-8 w-full min-h-[22rem]">
+      <div className="basis-[40%] flex flex-col justify-between lg:pl-24">
+        <div
+          className="flex flex-row justify-between md:justify-start
+                   pb-8 md:pb-0 md:flex-col gap-6 "
+        >
           <h1 className="flex flex-col font-bold tracking-wide leading-4">
             <span>eommerce</span>
             <span>academy</span>
@@ -24,9 +27,11 @@ const Footer = () => {
             <AiFillYoutube size={18} />
           </div>
         </div>
-        <p className="text-xs text-paragraph">Copyright &copy; 2024</p>
+        <p className="text-xs text-paragraph hidden md:block">
+          Copyright &copy; 2024
+        </p>
       </div>
-      <div className="flex-1 flex justify-around py-2">
+      <div className="flex-1 flex justify-between md:justify-around py-2">
         <div className="flex flex-col gap-2">
           <h3 className="text-primary pb-4">Courses</h3>
           <p className="text-sm">SMS Marketing</p>
@@ -56,7 +61,10 @@ const Footer = () => {
           <p className="text-sm ">Legal</p>
         </div>
       </div>
-    </div>
+      <p className="md:hidden text-xs text-paragraph pt-8 self-center">
+        Copyright &copy; 2024
+      </p>
+    </footer>
   );
 };
 

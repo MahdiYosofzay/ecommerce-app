@@ -12,7 +12,7 @@ const InfoCard = ({
   text: string;
 }) => {
   return (
-    <Card className="border-none">
+    <Card className="border-none z-20 bg-transparent">
       <CardContent className="flex flex-col gap-2">
         <Icon className="size-10 text-[#99d2fd]" />
         <p className="text-xl font-bold">{title}</p>

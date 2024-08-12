@@ -18,9 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("px-4 lg:px-12", inter.className)}>
+      <body className={inter.className}>
         <Navbar />
-        {children}
+        <main className="px-4 lg:px-12 relative">{children}</main>
       </body>
     </html>
   );
