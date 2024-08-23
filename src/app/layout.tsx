@@ -17,10 +17,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className="h-full">
+      <body className={cn(inter.className, "h-full")}>
         <Navbar />
-        <main className="px-4 lg:px-12 relative">{children}</main>
+        <main className="px-4 lg:px-12 relative flex flex-col min-h-[calc(100vh-5rem)]">
+          {children}
+        </main>
       </body>
     </html>
   );

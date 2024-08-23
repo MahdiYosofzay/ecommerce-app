@@ -23,10 +23,14 @@ const Navbar = () => {
           <Link href="/">About</Link>
         </div>
         <div className="hidden md:flex items-center gap-2">
-          <Button variant="secondary">Log in</Button>
-          <Button variant="default" className="flex items-center gap-2 py-6">
-            <span>Sign up</span>
-            <ArrowRight className="size-4" />
+          <Button variant="secondary">
+            <Link href="/auth/signin">Log in</Link>
+          </Button>
+          <Button variant="default">
+            <Link href="/auth/signup" className="flex items-center gap-2 py-6">
+              Sign up
+              <ArrowRight className="size-4" />
+            </Link>
           </Button>
         </div>
         <RxHamburgerMenu
