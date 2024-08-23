@@ -16,15 +16,19 @@ import {
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 
-const signupFormSchema = z.object({
-  name: z.string().min(2).max(50),
-  email: z.string().email("Email is incorrect"),
-  password: z.string().min(6).max(32),
+const SignupSchema = z.object({
+  name: z.string().min(3, "Name is required").max(50, "Name is too long"),
+  email: z.string().min(1, "Email is required").email("Invalid email address"),
+  password: z
+    .string()
+    .min(6, "Password must be at least 6 character long")
+    .max(32, "Password is too long"),
 });
+type SignupFormData = z.infer<typeof SignupSchema>;
 
 const SignUpForm = () => {
-  const form = useForm<z.infer<typeof signupFormSchema>>({
-    resolver: zodResolver(signupFormSchema),
+  const form = useForm<SignupFormData>({
+    resolver: zodResolver(SignupSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -32,9 +36,29 @@ const SignUpForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof signupFormSchema>) {
-    console.log(values);
+  async function onSubmit(data: SignupFormData) {
+    try {
+      const response = await fetch("/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        alert(errorData.message || "An error occurred during signup.");
+        return;
+      }
+
+      alert("Singup successfull");
+    } catch (error) {
+      console.error("Signup error:", error);
+      alert("An unexpected error occurred. Please try again.");
+    }
   }
+
   return (
     <div className="flex justify-center items-center flex-grow">
       <Form {...form}>
