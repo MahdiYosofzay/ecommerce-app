@@ -16,23 +16,21 @@ import {
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 
-const signupFormSchema = z.object({
-  name: z.string().min(2).max(50),
+const loginFormSchema = z.object({
   email: z.string().email("Email is incorrect"),
   password: z.string().min(6).max(32),
 });
 
-const SignUpForm = () => {
-  const form = useForm<z.infer<typeof signupFormSchema>>({
-    resolver: zodResolver(signupFormSchema),
+const LoginForm = () => {
+  const form = useForm<z.infer<typeof loginFormSchema>>({
+    resolver: zodResolver(loginFormSchema),
     defaultValues: {
-      name: "",
       email: "",
       password: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof signupFormSchema>) {
+  function onSubmit(values: z.infer<typeof loginFormSchema>) {
     console.log(values);
   }
   return (
@@ -43,21 +41,8 @@ const SignUpForm = () => {
           className="space-y-6 px-16 py-8 rounded-lg w-[35rem] bg-card"
         >
           <h1 className="text-3xl font-bold text-primary text-center">
-            Welcome to Ecommerce Academy
+            Welcome Back!
           </h1>
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="Full Name" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
           <FormField
             control={form.control}
             name="email"
@@ -85,14 +70,14 @@ const SignUpForm = () => {
             )}
           />
           <div>
-            <Button type="submit">Sign up</Button>
+            <Button type="submit">Login</Button>
             <p className="text-xs pt-2">
-              Already have an account?{" "}
+              Don't have an account?{" "}
               <Link
-                href="/auth/signin"
+                href="/auth/signup"
                 className="hover:underline text-primary text-sm"
               >
-                Sign in
+                Sign up
               </Link>
             </p>
           </div>
@@ -102,4 +87,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default LoginForm;

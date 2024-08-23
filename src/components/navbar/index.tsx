@@ -12,11 +12,14 @@ const Navbar = () => {
   return (
     <nav className="w-full bg-background mb-2 sticky top-0 left-0 z-30">
       <div className="relative flex flex-row-reverse md:flex-row justify-between items-center px-8 lg:px-16 py-4">
-        <h1 className="flex flex-col leading-3 gap-2 font-bold text-lg">
+        <Link
+          href="/"
+          className="flex flex-col leading-3 gap-2 font-bold text-lg"
+        >
           <span>ecommerce</span>
           <span>academy</span>
           <span></span>
-        </h1>
+        </Link>
         <div className="hidden md:flex gap-8">
           <Link href="/">Courses</Link>
           <Link href="/">Instructors</Link>
