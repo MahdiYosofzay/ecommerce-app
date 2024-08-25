@@ -18,6 +18,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { LoginSchema } from "../_lib/defenitions";
 import { onSubmit } from "./actions";
+import LoadingSpinner from "@/components/loading-spinner";
 
 type LoginFormData = z.infer<typeof LoginSchema>;
 
@@ -72,8 +73,16 @@ const LoginForm = () => {
             )}
           />
           <div>
-            <Button type="submit" disabled={isSubmitting}>
-              Login
+            <Button
+              type="submit"
+              className="font-normal w-full mt-4"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <LoadingSpinner className="text-white" />
+              ) : (
+                "Login"
+              )}
             </Button>
             <p className="text-xs pt-2">
               Don't have an account?{" "}
