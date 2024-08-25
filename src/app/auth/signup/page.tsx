@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 const SignupSchema = z.object({
@@ -29,6 +29,7 @@ const SignupSchema = z.object({
 type SignupFormData = z.infer<typeof SignupSchema>;
 
 const SignUpForm = () => {
+  const router = useRouter();
   const form = useForm<SignupFormData>({
     resolver: zodResolver(SignupSchema),
     defaultValues: {
@@ -55,6 +56,7 @@ const SignUpForm = () => {
       }
 
       toast.success("Account created successfully!");
+      router.push("/");
     } catch (error) {
       console.error("Signup error:", error);
       toast.error("An unexpected error occurred. Please try again.");
