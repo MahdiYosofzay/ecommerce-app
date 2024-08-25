@@ -15,13 +15,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { redirect, useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-
-const LoginSchema = z.object({
-  email: z.string().email("Email is incorrect"),
-  password: z.string().min(6).max(32),
-});
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { LoginSchema } from "../_lib/defenitions";
 
 type LoginFormData = z.infer<typeof LoginSchema>;
 
@@ -34,6 +30,10 @@ const LoginForm = () => {
       password: "",
     },
   });
+
+  const {
+    formState: { isSubmitting },
+  } = form;
 
   async function onSubmit(data: LoginFormData) {
     try {
@@ -95,7 +95,9 @@ const LoginForm = () => {
             )}
           />
           <div>
-            <Button type="submit">Login</Button>
+            <Button type="submit" disabled={isSubmitting}>
+              Login
+            </Button>
             <p className="text-xs pt-2">
               Don't have an account?{" "}
               <Link
