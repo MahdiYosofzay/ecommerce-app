@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { toast } from "react-toastify";
 
 const LoginSchema = z.object({
   email: z.string().email("Email is incorrect"),
@@ -45,15 +46,14 @@ const LoginForm = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        alert(errorData.message || "An error occured during login");
+        toast.error(errorData.message || "An error occured during login");
         return;
       }
 
-      alert("Login successful");
-      redirect("/");
+      toast.success("Welcome Back!");
     } catch (error) {
       console.error("Signup error:", error);
-      alert("An unexpected error occurred. Please try again.");
+      toast.error("An unexpected error occurred. Please try again.");
     }
   }
   return (

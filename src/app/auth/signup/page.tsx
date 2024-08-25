@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { toast } from "react-toastify";
 
 const SignupSchema = z.object({
   name: z.string().min(3, "Name is required").max(50, "Name is too long"),
@@ -49,15 +50,14 @@ const SignUpForm = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        alert(errorData.message || "An error occurred during signup.");
+        toast.error(errorData.message || "An error occurred during signup.");
         return;
       }
 
-      alert("Signup successfull");
-      redirect("/auth/login");
+      toast.success("Account created successfully!");
     } catch (error) {
       console.error("Signup error:", error);
-      alert("An unexpected error occurred. Please try again.");
+      toast.error("An unexpected error occurred. Please try again.");
     }
   }
 
