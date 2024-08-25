@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SignupSchema } from "../_lib/defenitions";
-import { toast } from "sonner";
+import { onSubmit } from "@/app/api/signup/actions";
 
 type SignupFormData = z.infer<typeof SignupSchema>;
 
@@ -35,35 +35,11 @@ const SignUpForm = () => {
     formState: { isSubmitting },
   } = form;
 
-  async function onSubmit(data: SignupFormData) {
-    try {
-      const response = await fetch("/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        toast.error(errorData.message || "An error occurred during signup.");
-        return;
-      }
-
-      toast.success("Account created successfully!");
-      router.push("/");
-    } catch (error) {
-      console.error("Signup error:", error);
-      toast.error("An unexpected error occurred. Please try again.");
-    }
-  }
-
   return (
     <div className="flex justify-center items-center flex-grow">
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(onSubmit)}
+          onSubmit={form.handleSubmit((data) => onSubmit(data, router))}
           className="space-y-6 px-16 py-8 rounded-lg w-[35rem] bg-card"
         >
           <h1 className="text-3xl font-bold text-primary text-center">
