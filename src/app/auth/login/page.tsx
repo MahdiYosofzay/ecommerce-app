@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { LoginSchema } from "../_lib/defenitions";
-import { onSubmit } from "@/app/api/login/actions";
+import { onSubmit } from "./actions";
 
 type LoginFormData = z.infer<typeof LoginSchema>;
 
