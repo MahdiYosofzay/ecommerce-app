@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 const SignupSchema = z.object({
   name: z.string().min(3, "Name is required").max(50, "Name is too long"),
@@ -52,7 +53,8 @@ const SignUpForm = () => {
         return;
       }
 
-      alert("Singup successfull");
+      alert("Signup successfull");
+      redirect("/auth/login");
     } catch (error) {
       console.error("Signup error:", error);
       alert("An unexpected error occurred. Please try again.");
@@ -113,7 +115,7 @@ const SignUpForm = () => {
             <p className="text-xs pt-2">
               Already have an account?{" "}
               <Link
-                href="/auth/signin"
+                href="/auth/login"
                 className="hover:underline text-primary text-sm"
               >
                 Sign in

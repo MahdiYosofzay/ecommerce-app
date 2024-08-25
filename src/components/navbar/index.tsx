@@ -27,7 +27,7 @@ const Navbar = () => {
         </div>
         <div className="hidden md:flex items-center gap-2">
           <Button variant="secondary">
-            <Link href="/auth/signin">Log in</Link>
+            <Link href="/auth/login">Log in</Link>
           </Button>
           <Button variant="default">
             <Link href="/auth/signup" className="flex items-center gap-2 py-6">
