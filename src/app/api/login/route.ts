@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import bcrypt from "bcrypt";
+import { createSession } from "@/app/auth/_lib/session";
 
 const prisma = new PrismaClient();
 
@@ -46,6 +47,8 @@ export async function POST(request: Request) {
         { status: 401 }
       );
     }
+
+    await createSession(user.id);
 
     return NextResponse.json({ message: "Login successful" }, { status: 200 });
   } catch (error) {

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { z } from "zod";
 import bcrypt from "bcrypt";
+import { createSession } from "@/app/auth/_lib/session";
 
 const prisma = new PrismaClient();
 
@@ -30,7 +31,7 @@ export async function POST(request: Request) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    await prisma.user.create({
+    const user = await prisma.user.create({
       data: {
         name,
         email,
@@ -38,8 +39,9 @@ export async function POST(request: Request) {
       },
     });
 
+    await createSession(user.id);
     return NextResponse.json(
-      { message: "Signup successful!" },
+      { message: "Signup successful!", userId: user.id },
       { status: 200 }
     );
   } catch (error) {

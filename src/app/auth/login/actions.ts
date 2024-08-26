@@ -1,6 +1,7 @@
 import { LoginFormData } from "@/app/auth/_lib/defenitions";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { createSession } from "../_lib/session";
 
 export async function onSubmit(
   data: LoginFormData,
