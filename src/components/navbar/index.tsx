@@ -25,6 +25,7 @@ const Navbar = () => {
           <Link href="/">Instructors</Link>
           <Link href="/">About</Link>
         </div>
+
         <div className="hidden md:flex items-center gap-2">
           <Button variant="secondary">
             <Link href="/login">Log in</Link>
@@ -36,6 +37,7 @@ const Navbar = () => {
             </Link>
           </Button>
         </div>
+
         <RxHamburgerMenu
           className="md:hidden"
           size={28}

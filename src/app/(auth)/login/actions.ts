@@ -1,4 +1,4 @@
-import { LoginFormData } from "@/app/(auth)/_lib/defenitions";
+import { LoginFormData } from "@/lib/defenitions";
 import { toast } from "sonner";
 
 export async function onSubmit(data: LoginFormData) {

@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { SignupSchema } from "../_lib/defenitions";
+import { SignupSchema } from "../../../lib/defenitions";
 import { onSubmit } from "./actions";
 
 type SignupFormData = z.infer<typeof SignupSchema>;

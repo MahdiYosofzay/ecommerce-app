@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { LoginSchema } from "../_lib/defenitions";
+import { LoginSchema } from "../../../lib/defenitions";
 import { onSubmit } from "./actions";
 import LoadingSpinner from "@/components/loading-spinner";
 
