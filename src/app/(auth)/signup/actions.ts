@@ -1,11 +1,7 @@
-import { SignupFormData } from "@/app/auth/_lib/defenitions";
-import { useRouter } from "next/navigation";
+import { SignupFormData } from "@/app/(auth)/_lib/defenitions";
 import { toast } from "sonner";
 
-export async function onSubmit(
-  data: SignupFormData,
-  router: ReturnType<typeof useRouter>
-) {
+export async function onSubmit(data: SignupFormData) {
   try {
     const response = await fetch("/api/signup", {
       method: "POST",
@@ -22,7 +18,6 @@ export async function onSubmit(
     }
 
     toast.success("Account created successfully!");
-    router.push("/");
   } catch (error) {
     console.error("Signup error:", error);
     toast.error("An unexpected error occurred. Please try again.");

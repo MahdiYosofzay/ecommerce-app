@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { LoginSchema } from "../_lib/defenitions";
 import { onSubmit } from "./actions";
 import LoadingSpinner from "@/components/loading-spinner";
@@ -23,7 +22,6 @@ import LoadingSpinner from "@/components/loading-spinner";
 type LoginFormData = z.infer<typeof LoginSchema>;
 
 const LoginForm = () => {
-  const router = useRouter();
   const form = useForm<LoginFormData>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -40,7 +38,7 @@ const LoginForm = () => {
     <div className="flex justify-center items-center flex-grow">
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit((data) => onSubmit(data, router))}
+          onSubmit={form.handleSubmit((data) => onSubmit(data))}
           className="space-y-6 px-16 py-8 rounded-lg w-[35rem] bg-card"
         >
           <h1 className="text-3xl font-bold text-primary text-center">
