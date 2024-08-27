@@ -12,7 +12,6 @@ export default async function middleware(req: NextRequest) {
 
   const cookie = cookies().get("session")?.value;
   const session = await decrypt(cookie);
-  console.log(session);
 
   if (isProtectedRoute && !session?.userId) {
     return NextResponse.redirect(new URL("/login", req.nextUrl));
@@ -21,7 +20,8 @@ export default async function middleware(req: NextRequest) {
   if (
     isPublicRoute &&
     session?.userId &&
-    !req.nextUrl.pathname.startsWith("/dashboard")
+    (req.nextUrl.pathname.startsWith("/login") ||
+      req.nextUrl.pathname.startsWith("/signup"))
   ) {
     return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
   }
