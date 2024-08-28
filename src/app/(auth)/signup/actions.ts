@@ -1,7 +1,11 @@
 import { SignupFormData } from "@/lib/defenitions";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-export async function onSubmit(data: SignupFormData) {
+export async function onSubmit(
+  data: SignupFormData,
+  router: ReturnType<typeof useRouter>
+) {
   try {
     const response = await fetch("/api/signup", {
       method: "POST",
@@ -18,6 +22,7 @@ export async function onSubmit(data: SignupFormData) {
     }
 
     toast.success("Account created successfully!");
+    router.push("/dashboard");
   } catch (error) {
     console.error("Signup error:", error);
     toast.error("An unexpected error occurred. Please try again.");

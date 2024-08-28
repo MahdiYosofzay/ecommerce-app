@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import bcrypt from "bcrypt";
 import { createSession } from "@/lib/session";
+import { redirect } from "next/navigation";
 
 const prisma = new PrismaClient();
 
@@ -49,7 +50,6 @@ export async function POST(request: Request) {
     }
 
     await createSession(user.id);
-
     return NextResponse.json({ message: "Login successful" }, { status: 200 });
   } catch (error) {
     console.error("Login error:", error);

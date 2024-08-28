@@ -18,10 +18,12 @@ import Link from "next/link";
 import { LoginSchema } from "../../../lib/defenitions";
 import { onSubmit } from "./actions";
 import LoadingSpinner from "@/components/loading-spinner";
+import { useRouter } from "next/navigation";
 
 type LoginFormData = z.infer<typeof LoginSchema>;
 
 const LoginForm = () => {
+  const router = useRouter();
   const form = useForm<LoginFormData>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -38,7 +40,7 @@ const LoginForm = () => {
     <div className="flex justify-center items-center flex-grow">
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit((data) => onSubmit(data))}
+          onSubmit={form.handleSubmit((data) => onSubmit(data, router))}
           className="space-y-6 px-16 py-8 rounded-lg w-[35rem] bg-card"
         >
           <h1 className="text-3xl font-bold text-primary text-center">
@@ -85,7 +87,7 @@ const LoginForm = () => {
             <p className="text-xs pt-2">
               Don't have an account?{" "}
               <Link
-                href="/auth/signup"
+                href="/signup"
                 className="hover:underline text-primary text-sm"
               >
                 Sign up

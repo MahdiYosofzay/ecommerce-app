@@ -17,10 +17,13 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { SignupSchema } from "../../../lib/defenitions";
 import { onSubmit } from "./actions";
+import LoadingSpinner from "@/components/loading-spinner";
+import { useRouter } from "next/navigation";
 
 type SignupFormData = z.infer<typeof SignupSchema>;
 
 const SignUpForm = () => {
+  const router = useRouter();
   const form = useForm<SignupFormData>({
     resolver: zodResolver(SignupSchema),
     defaultValues: {
@@ -37,7 +40,7 @@ const SignUpForm = () => {
     <div className="flex justify-center items-center flex-grow">
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit((data) => onSubmit(data))}
+          onSubmit={form.handleSubmit((data) => onSubmit(data, router))}
           className="space-y-6 px-16 py-8 rounded-lg w-[35rem] bg-card"
         >
           <h1 className="text-3xl font-bold text-primary text-center">
@@ -83,8 +86,16 @@ const SignUpForm = () => {
             )}
           />
           <div>
-            <Button type="submit" disabled={isSubmitting}>
-              Sign up
+            <Button
+              type="submit"
+              className="font-normal w-full mt-4"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <LoadingSpinner className="text-white" />
+              ) : (
+                "Sign up"
+              )}
             </Button>
             <p className="text-xs pt-2">
               Already have an account?{" "}

@@ -1,7 +1,11 @@
 import { LoginFormData } from "@/lib/defenitions";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-export async function onSubmit(data: LoginFormData) {
+export async function onSubmit(
+  data: LoginFormData,
+  router: ReturnType<typeof useRouter>
+) {
   try {
     const response = await fetch("/api/login", {
       method: "POST",
@@ -18,6 +22,7 @@ export async function onSubmit(data: LoginFormData) {
     }
 
     toast.success("Welcome Back!");
+    router.push("/dashboard");
   } catch (error) {
     console.error("Login error:", error);
     toast.error("An unexpected error occurred. Please try again.");
